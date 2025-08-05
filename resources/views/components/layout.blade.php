@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Tube Log</title>
+    <link rel="icon" href="{{ asset('favicon.png') }}" type="image/x-icon" />
     @vite('resources/css/app.css')
+{{--    <a href="https://www.flaticon.com/free-icons/cinema" title="cinema icons">Cinema icons created by Freepik - Flaticon</a> --}}
 </head>
 <body class="bg-black text-white">
 <div>
