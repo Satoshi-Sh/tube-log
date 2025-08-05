@@ -24,5 +24,7 @@ jobs:
 #          service_token_secret: ${{ secrets.SERVICE_TOKEN_SECRET }}
           commands: |
             cd ${{ secrets.PROJECT_ROOT }}
+            git fetch && git reset origin/main --hard
+            chmod -R 755 storage bootstrap/cache
             chmod +x ./redeploy-site.sh
             ./redeploy-site.sh
