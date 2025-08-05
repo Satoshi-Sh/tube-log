@@ -23,4 +23,5 @@ jobs:
 #          service_token_id: ${{ secrets.SERVICE_TOKEN_ID }}
 #          service_token_secret: ${{ secrets.SERVICE_TOKEN_SECRET }}
           commands: |
-            echo "Testing Deoploy.yml"
+            chmod +x ${{ secrets.PROJECT_ROOT }}/redeploy-site.sh
+            ${{ secrets.PROJECT_ROOT }}/redeploy-site.sh
