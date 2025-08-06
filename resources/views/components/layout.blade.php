@@ -24,21 +24,19 @@
         </div>
 
         @auth
-            <div class="space-x-6 font-bold flex sm:block hidden">
-                <a href="/jobs/create">Post a Job</a>
-
+            <div class="space-x-6 font-bold sm:flex hidden">
+                <a href="/video/create">Add Video</a>
                 <form method="POST" action="/logout">
                     @csrf
                     @method('DELETE')
-
-                    <button>Log Out</button>
+                    <button class="cursor-pointer">Log Out</button>
                 </form>
             </div>
         @endauth
 
         @guest
             <div class="space-x-6 font-bold sm:block hidden">
-{{--                <a href="/register">Sign Up</a>--}}
+                <a href="/register">Sign Up</a>
                 <a href="/login">Log In</a>
             </div>
         @endguest

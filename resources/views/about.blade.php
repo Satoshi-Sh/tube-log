@@ -1,5 +1,5 @@
 <x-layout>
-    <h1 class="font-extrabold text-3xl">About</h1>
+    <x-page-heading>About</x-page-heading>
     <p class="indent-2">
         I completed the Laracasts course <em>"30 Days to Learn Laravel"</em> and wanted to build something using Laravel.
         Yeah, I also bought a Laracasts lifetime subscription as it was on sale (60% off). My portfolio is getting

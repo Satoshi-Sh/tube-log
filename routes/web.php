@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RegisteredUserController;
 
 Route::get('/', function () {
     return view('index');
@@ -10,3 +12,11 @@ Route::get('/', function () {
 Route::get('/about', function () {
     return view('about');
 });
+
+Route::get('/register',[RegisteredUserController::class, 'create'])->middleware('guest');
+Route::post('/register',[RegisteredUserController::class, 'store'])->middleware('guest');
+
+Route::get('/login', [SessionController::class,'create'])->middleware('guest');
+Route::post('/login',[SessionController::class, 'store'])->middleware('guest');
+
+Route::delete('/logout',[SessionController::class, 'destroy'])->middleware('auth');
