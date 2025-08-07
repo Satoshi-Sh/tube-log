@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisteredUserController;
@@ -20,3 +21,5 @@ Route::get('/login', [SessionController::class,'create'])->middleware('guest');
 Route::post('/login',[SessionController::class, 'store'])->middleware('guest');
 
 Route::delete('/logout',[SessionController::class, 'destroy'])->middleware('auth');
+
+Route::get('/dashboard', [AdminController::class, 'index'])->middleware('auth');

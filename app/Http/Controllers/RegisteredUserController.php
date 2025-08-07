@@ -22,7 +22,7 @@ class RegisteredUserController extends Controller
         $user = User::create($userAttributes);
 
         Auth::login($user);
-        return redirect('/');
+        return redirect('/dashboard');
     }
 
 }

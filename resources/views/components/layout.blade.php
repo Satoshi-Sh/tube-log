@@ -8,7 +8,7 @@
     @vite('resources/css/app.css')
 {{--    <a href="https://www.flaticon.com/free-icons/cinema" title="cinema icons">Cinema icons created by Freepik - Flaticon</a> --}}
 </head>
-<body class="bg-black text-white">
+<body class="bg-black text-white mb-40">
 <div>
     <nav class=" sticky bg-gray-950 top-0  flex justify-between items-center px-4 py-6 border-b border-white/10">
         <div class="sm:block hidden">
@@ -25,7 +25,7 @@
 
         @auth
             <div class="space-x-6 font-bold sm:flex hidden">
-                <a href="/video/create">Add Video</a>
+                <x-nav-link href="/dashboard" :active="request()->is('dashboard')">Dashboard</x-nav-link>
                 <form method="POST" action="/logout">
                     @csrf
                     @method('DELETE')

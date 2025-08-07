@@ -14,6 +14,12 @@ return [
     |
     */
 
+    'youtube' => [
+        'api_key' => env('YOUTUBE_DATA_API_KEY'),
+        'playlist_id' => env('YOUTUBE_PLAYLIST_ID'),
+    ],
+
+
     'postmark' => [
         'token' => env('POSTMARK_TOKEN'),
     ],
@@ -34,5 +40,6 @@ return [
             'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
         ],
     ],
+
 
 ];
