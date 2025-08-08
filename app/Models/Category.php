@@ -11,9 +11,4 @@ class Category extends Model
     public function videos():BelongsToMany{
         return $this->belongsToMany(Video::class);
     }
-
-    public function showCountVideos():string{
-        $count = $this->videos()->count();
-        return $this->name . " " . $count;
-    }
 }

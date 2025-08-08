@@ -7,10 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\CategoryController;
 
-Route::get('/', function () {
-    return view('index');
-});
-
+Route::get('/', [VideoController::class, 'index']);
 
 Route::get('/about', function () {
     return view('about');

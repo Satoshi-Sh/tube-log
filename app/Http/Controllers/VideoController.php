@@ -1,13 +1,20 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Category;
 use App\Services\YoutubeAPIHandler;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 
 class VideoController extends Controller
 {
+    public function index(){
+        return view('videos.index',
+        ['categories' => Category::withCount('videos')->get(),]
+        );
+    }
     public function create($id){
       $video = (new YoutubeAPIHandler())->getVideoById($id)['snippet'];
       return view('videos.create', compact('video','id'));

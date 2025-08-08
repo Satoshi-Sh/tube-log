@@ -4,8 +4,9 @@
     <section class="flex flex-col">
         <x-section-heading>Edit Categories</x-section-heading>
         <div class="mt-10 flex flex-row flex-wrap justify-center sm:justify-start gap-5">
-            <x-tag>Bass 10</x-tag>
-            <x-tag>Programming 7</x-tag>
+            @foreach($categories as $category)
+                <x-tag>{{ $category->name }} {{ $category->videos_count }}</x-tag>
+            @endforeach
         </div>
         <a href="/dashboard/categories" class="self-center inline-block mt-20 hover:text-blue-400 cursor-pointer transition-all duration-300 ">Create New Category</a>
     </section>
