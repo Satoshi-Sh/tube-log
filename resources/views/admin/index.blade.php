@@ -7,7 +7,7 @@
             <x-tag>Bass 10</x-tag>
             <x-tag>Programming 7</x-tag>
         </div>
-        <a class="self-center inline-block mt-20 hover:text-blue-400 cursor-pointer transition-all duration-300 ">Create New Category</a>
+        <a href="/dashboard/categories" class="self-center inline-block mt-20 hover:text-blue-400 cursor-pointer transition-all duration-300 ">Create New Category</a>
     </section>
 
     <x-section-heading>Upload Videos</x-section-heading>

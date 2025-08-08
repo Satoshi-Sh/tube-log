@@ -5,6 +5,7 @@ use App\Http\Controllers\SessionController;
 use App\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisteredUserController;
+use App\Http\Controllers\CategoryController;
 
 Route::get('/', function () {
     return view('index');
@@ -24,6 +25,10 @@ Route::post('/login',[SessionController::class, 'store'])->middleware('guest');
 Route::delete('/logout',[SessionController::class, 'destroy'])->middleware('auth');
 
 Route::get('/dashboard', [AdminController::class, 'index'])->middleware('auth');
+
+Route::get('/dashboard/categories', [CategoryController::class, 'create'])->middleware('auth');
+Route::post('/dashboard/categories', [CategoryController::class, 'store'])->middleware('auth');
+
 Route::get('/dashboard/create/{id}', [VideoController::class, 'create'])->middleware('auth');
 
 Route::post('/dashboard/create/{id}', [VideoController::class, 'store'])->middleware('auth');
