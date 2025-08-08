@@ -16,4 +16,5 @@
         <x-video-card-edit :video="$video"/>
     @endforeach
     </section>
+
 </x-layout>
