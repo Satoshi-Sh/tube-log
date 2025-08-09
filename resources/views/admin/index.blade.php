@@ -11,11 +11,22 @@
         <a href="/dashboard/categories" class="self-center inline-block mt-20 hover:text-blue-400 cursor-pointer transition-all duration-300 ">Create New Category</a>
     </section>
 
-    <x-section-heading>Upload Videos</x-section-heading>
-    <section class="flex flex-wrap gap-4 justify-center">
-    @foreach($videos as $video)
-        <x-video-card-edit :video="$video"/>
-    @endforeach
+    <section>
+        <x-section-heading>Uploaded Videos</x-section-heading>
+        <div class=" mt-10 flex flex-wrap gap-4 justify-center">
+            @foreach($videos as $video)
+
+            @endforeach
+        </div>
+    </section>
+
+    <section>
+        <x-section-heading>Upload New Videos</x-section-heading>
+        <div class=" mt-10 flex flex-wrap gap-4 justify-center">
+            @foreach($videos as $video)
+                <x-video-card-edit :video="$video"/>
+            @endforeach
+        </div>
     </section>
 
 </x-layout>

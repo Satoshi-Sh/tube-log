@@ -9,6 +9,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Category extends Model
 {
     public function videos():BelongsToMany{
-        return $this->belongsToMany(Video::class);
+        return $this->belongsToMany(Video::class,'category_video', 'category_id', 'video_id');
     }
 }

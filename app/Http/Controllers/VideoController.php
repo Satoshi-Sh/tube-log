@@ -17,7 +17,9 @@ class VideoController extends Controller
     }
     public function create($id){
       $video = (new YoutubeAPIHandler())->getVideoById($id)['snippet'];
-      return view('videos.create', compact('video','id'));
+      $categories = Category::withCount('videos')->get();
+      $categories =  $categories->pluck('name')->toArray();
+      return view('videos.create', compact('video','id','categories'));
     }
 
     public function store($id, Request $request){
@@ -35,7 +37,7 @@ class VideoController extends Controller
 
         if ($attributes['categories']?? false){
             foreach ($attributes['categories'] as $category){
-                $video->categories()->attach($category);
+                $video->tag($category);
             }
         }
         return redirect("/dashboard");

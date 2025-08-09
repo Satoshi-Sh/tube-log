@@ -9,8 +9,10 @@ use App\Models\Category;
 
 class Video extends Model
 {
+    protected $keyType = 'string';
+    public $incrementing = false;
     public function categories():BelongsToMany{
-        return $this->belongsToMany(Category::class);
+        return $this->belongsToMany(Category::class,'category_video', 'video_id', 'category_id');
     }
 
     public function tag($name){

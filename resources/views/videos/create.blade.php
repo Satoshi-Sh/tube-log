@@ -8,7 +8,7 @@
         <x-forms.checkbox-group
             label="Categories"
             name="categories"
-            :options="['php', 'python', 'programming','guitar','bass']"
+            :options="$categories"
         />
 
         <x-forms.checkbox label="Featured" name="is_featured"></x-forms.checkbox>
