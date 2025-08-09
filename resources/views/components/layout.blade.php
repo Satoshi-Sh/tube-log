@@ -29,15 +29,15 @@
                 <form method="POST" action="/logout">
                     @csrf
                     @method('DELETE')
-                    <button class="cursor-pointer">Log Out</button>
+                    <button class="cursor-pointer hover:text-gray-300 transition-colors duration-300">Log Out</button>
                 </form>
             </div>
         @endauth
 
         @guest
             <div class="space-x-6 font-bold sm:block hidden">
-                <a href="/register">Sign Up</a>
-                <a href="/login">Log In</a>
+                <x-nav-link href="/register" :active="request()->is('register')">Sign Up</x-nav-link>
+                <x-nav-link href="/login" :active="request()->is('login')">Log In</x-nav-link>
             </div>
         @endguest
     </nav>

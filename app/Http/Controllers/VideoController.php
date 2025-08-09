@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 use App\Models\Category;
+use App\Models\Video;
 use App\Services\YoutubeAPIHandler;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class VideoController extends Controller
 {
@@ -41,5 +43,22 @@ class VideoController extends Controller
             }
         }
         return redirect("/dashboard");
+    }
+    public function edit($id, Request $request){
+        $validator = Validator::make(['id' => $id], [
+            'id' => ['required', 'string', 'size:11', 'regex:/^[A-Za-z0-9_-]{11}$/'],
+        ]);
+
+        if ($validator->fails()) {
+            abort(404);
+        }
+
+        $video = Video::with('categories')->find($id);
+        $selected = $video->categories->pluck('name')->toArray();
+        $categories = Category::all()->pluck('name')->toArray();;
+        return view('videos.edit', compact('video','categories', 'selected'));
+    }
+    public function update($id, Request $request){
+        dd($id, $request);
     }
 }

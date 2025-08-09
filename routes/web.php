@@ -27,5 +27,7 @@ Route::get('/dashboard/categories', [CategoryController::class, 'create'])->midd
 Route::post('/dashboard/categories', [CategoryController::class, 'store'])->middleware('auth');
 
 Route::get('/dashboard/create/{id}', [VideoController::class, 'create'])->middleware('auth');
-
 Route::post('/dashboard/create/{id}', [VideoController::class, 'store'])->middleware('auth');
+
+Route::get('/dashboard/edit/{id}', [VideoController::class, 'edit'])->middleware('auth');
+Route::put('/dashboard/edit/{id}', [VideoController::class, 'update'])->middleware('auth');

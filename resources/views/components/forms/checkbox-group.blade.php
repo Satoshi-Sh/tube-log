@@ -2,6 +2,7 @@
     'label',
     'name',
     'options' => [], // e.g. ['PHP', 'JavaScript', 'Python']
+    'selected' => []
 ])
 
 <x-forms.field :$label :$name>
@@ -17,7 +18,7 @@
                     id="{{ $id }}"
                     name="{{ $name }}[]"
                     value="{{ $value }}"
-                    @checked(in_array($value, old($name, [])))
+                    @checked(in_array($value, old($name, $selected)))
                     class="mr-2"
                 >
                 <span>{{ ucfirst($option) }}</span>

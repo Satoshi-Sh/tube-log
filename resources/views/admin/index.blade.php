@@ -14,8 +14,8 @@
     <section>
         <x-section-heading>Uploaded Videos</x-section-heading>
         <div class=" mt-10 flex flex-wrap gap-4 justify-center">
-            @foreach($videos as $video)
-
+            @foreach($uploadedVideos as $video)
+                <x-cards.video-edit :video="$video"/>
             @endforeach
         </div>
     </section>
@@ -23,8 +23,8 @@
     <section>
         <x-section-heading>Upload New Videos</x-section-heading>
         <div class=" mt-10 flex flex-wrap gap-4 justify-center">
-            @foreach($videos as $video)
-                <x-video-card-edit :video="$video"/>
+            @foreach($newVideos as $video)
+                <x-cards.video-upload :video="$video"/>
             @endforeach
         </div>
     </section>

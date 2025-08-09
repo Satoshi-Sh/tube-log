@@ -9,11 +9,15 @@ use App\Services\YoutubeAPIHandler;
 class AdminController extends Controller
 {
     public function index(){
-        $videos = (new YoutubeAPIHandler())->getPlaylist();
-//        $uploadedVideos = Video::with('categories')->get();
-
+        $uploadedVideos = Video::with('categories')->get();
+        $uploadedVideoIds = $uploadedVideos->pluck('id')->toArray();
+        $newVideos = (new YoutubeAPIHandler())->getPlaylist();
+        $filteredNewVideos = collect($newVideos)->reject(function ($video) use ($uploadedVideoIds) {
+            return in_array($video['snippet']['resourceId']['videoId'], $uploadedVideoIds);
+        })->values();
         return view('admin.index',[
-            'videos' => $videos,
+            'uploadedVideos' => $uploadedVideos,
+            'newVideos' => $filteredNewVideos,
             'categories' => Category::withCount('videos')->get(),
         ]);
     }
