@@ -44,21 +44,13 @@ class VideoController extends Controller
         }
         return redirect("/dashboard");
     }
-    public function edit($id, Request $request){
-        $validator = Validator::make(['id' => $id], [
-            'id' => ['required', 'string', 'size:11', 'regex:/^[A-Za-z0-9_-]{11}$/'],
-        ]);
-
-        if ($validator->fails()) {
-            abort(404);
-        }
-
-        $video = Video::with('categories')->find($id);
+    public function edit(Request $request, Video $video){
+        $video->load('categories');
         $selected = $video->categories->pluck('name')->toArray();
         $categories = Category::all()->pluck('name')->toArray();;
         return view('videos.edit', compact('video','categories', 'selected'));
     }
-    public function update($id, Request $request){
-        dd($id, $request);
+    public function update(Request $request , Video $video){
+        dd($video);
     }
 }
