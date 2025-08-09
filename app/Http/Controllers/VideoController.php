@@ -13,9 +13,18 @@ use Illuminate\Support\Facades\Validator;
 class VideoController extends Controller
 {
     public function index(){
+        $videos = Video::latest()->with('categories')->get()->groupBy('is_featured');
         return view('videos.index',
-        ['categories' => Category::withCount('videos')->get(),]
+            [
+                'featuredVideos' => $videos[1],
+                'videos' => $videos[0],
+                'categories' => Category::withCount('videos')->get(),
+            ]
         );
+    }
+    public function show(Video $video){
+        $video->load('categories');
+        return view('videos.show', compact('video'));
     }
     public function create($id){
       $video = (new YoutubeAPIHandler())->getVideoById($id)['snippet'];
@@ -62,5 +71,9 @@ class VideoController extends Controller
 
         return redirect("/dashboard");
 
+    }
+    public function destroy(Video $video){
+        $video-> delete();
+        return redirect("/dashboard");
     }
 }

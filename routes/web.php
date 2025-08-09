@@ -6,8 +6,11 @@ use App\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\CategoryController;
+use function Pest\Laravel\get;
 
 Route::get('/', [VideoController::class, 'index']);
+
+Route::get('/videos/{video}', [VideoController::class, 'show']);
 
 Route::get('/about', function () {
     return view('about');
@@ -31,3 +34,6 @@ Route::post('/dashboard/create/{id}', [VideoController::class, 'store'])->middle
 
 Route::get('/dashboard/edit/{video}', [VideoController::class, 'edit'])->middleware('auth');
 Route::put('/dashboard/edit/{video}', [VideoController::class, 'update'])->middleware('auth');
+Route::delete('/dashboard/videos/{video}', [VideoController::class, 'destroy'])->middleware('auth');
+
+

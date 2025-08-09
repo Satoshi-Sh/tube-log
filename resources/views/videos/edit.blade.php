@@ -22,4 +22,8 @@
 
         <x-forms.button>Update</x-forms.button>
     </x-forms.form>
+    <x-forms.divider/>
+    <x-forms.form method="DELETE" action="{{'/dashboard/videos/' . $video['id']}}" >
+        <x-forms.button class="bg-red-400 hover:bg-red-500">Delete</x-forms.button>
+    </x-forms.form>
 </x-layout>
