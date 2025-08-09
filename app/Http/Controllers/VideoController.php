@@ -16,8 +16,8 @@ class VideoController extends Controller
         $videos = Video::latest()->with('categories')->get()->groupBy('is_featured');
         return view('videos.index',
             [
-                'featuredVideos' => $videos[1],
-                'videos' => $videos[0],
+                'featuredVideos' => $videos->get(1, collect()),
+                'videos' => $videos->get(0, collect()),
                 'categories' => Category::withCount('videos')->get(),
             ]
         );
