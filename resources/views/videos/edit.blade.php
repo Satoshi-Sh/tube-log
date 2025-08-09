@@ -16,7 +16,7 @@
             :selected="$selected"
         />
 
-        <x-forms.checkbox label="Featured" name="is_featured"></x-forms.checkbox>
+        <x-forms.checkbox label="Featured" name="is_featured" :isChecked="$video['is_featured']"></x-forms.checkbox>
         <x-forms.textarea label="description" name="description" value="{{$video['description']}}"></x-forms.textarea>
         <x-forms.datetime label="Published At" name="published_at" value="{{ old('published_at', \Carbon\Carbon::parse($video['publishedAt'])->format('Y-m-d\TH:i')) }}" />
 

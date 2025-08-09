@@ -1,7 +1,7 @@
 @props([
     'label',
     'name',
-    'options' => [], // e.g. ['PHP', 'JavaScript', 'Python']
+    'options' => [],
     'selected' => []
 ])
 
@@ -9,8 +9,8 @@
     <div class="rounded-xl bg-white/10 border border-white/10 px-5 py-4 w-full space-y-2">
         @foreach ($options as $option)
             @php
-                $value = $option; // or Str::slug($option) if you want lowercase
-                $id = $name . '_' . $option;
+                $value = $option['id'];
+                $id = $name . '_' . $option['name'];
             @endphp
             <label for="{{ $id }}" class="flex items-center">
                 <input
@@ -18,10 +18,10 @@
                     id="{{ $id }}"
                     name="{{ $name }}[]"
                     value="{{ $value }}"
-                    @checked(in_array($value, old($name, $selected)))
+                    @checked(in_array($option['name'], old($name, $selected)))
                     class="mr-2"
                 >
-                <span>{{ ucfirst($option) }}</span>
+                <span>{{ ucfirst($option['name']) }}</span>
             </label>
         @endforeach
     </div>

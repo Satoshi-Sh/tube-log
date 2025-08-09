@@ -20,7 +20,7 @@ class VideoController extends Controller
     public function create($id){
       $video = (new YoutubeAPIHandler())->getVideoById($id)['snippet'];
       $categories = Category::withCount('videos')->get();
-      $categories =  $categories->pluck('name')->toArray();
+      $categories =  $categories->all();
       return view('videos.create', compact('video','id','categories'));
     }
 
@@ -31,26 +31,36 @@ class VideoController extends Controller
             'description' => ['required',],
             'published_at'=> ['required', 'date'],
             'categories' => ['array'],
-            'categories.*' => ['string', 'max:255'],
+            'categories.*' => ['int', 'max:255'],
         ]);
         $attributes['is_featured'] = $request->has('is_featured');
 
         $video = Auth::user()->videos()->create(Arr::except($attributes, 'categories'));
 
-        if ($attributes['categories']?? false){
-            foreach ($attributes['categories'] as $category){
-                $video->tag($category);
-            }
-        }
+        $video->categories()->sync($attributes['categories'] ?? []);
+
         return redirect("/dashboard");
     }
     public function edit(Request $request, Video $video){
         $video->load('categories');
         $selected = $video->categories->pluck('name')->toArray();
-        $categories = Category::all()->pluck('name')->toArray();;
+        $categories = Category::all();
         return view('videos.edit', compact('video','categories', 'selected'));
     }
     public function update(Request $request , Video $video){
-        dd($video);
+        $attributes = $request->validate([
+            'title'=> 'required',
+            'description' => ['required',],
+            'published_at'=> ['required', 'date'],
+            'categories' => ['array'],
+            'categories.*' => ['integer', 'exists:categories,id'],
+        ]);
+        $attributes['is_featured'] = $request->has('is_featured');
+        $video->update(Arr::except($attributes, 'categories'));
+
+        $video->categories()->sync($attributes['categories'] ?? []);
+
+        return redirect("/dashboard");
+
     }
 }

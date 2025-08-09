@@ -15,9 +15,4 @@ class Video extends Model
         return $this->belongsToMany(Category::class,'category_video', 'video_id', 'category_id');
     }
 
-    public function tag($name){
-        $category = Category::where('name',$name)->first();
-        $this->categories()->attach($category->id);
-    }
-
 }

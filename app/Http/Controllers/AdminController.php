@@ -9,7 +9,9 @@ use App\Services\YoutubeAPIHandler;
 class AdminController extends Controller
 {
     public function index(){
-        $uploadedVideos = Video::with('categories')->get();
+        $uploadedVideos = Video::with('categories')
+            ->orderBy('published_at', 'desc')
+            ->get();
         $uploadedVideoIds = $uploadedVideos->pluck('id')->toArray();
         $newVideos = (new YoutubeAPIHandler())->getPlaylist();
         $filteredNewVideos = collect($newVideos)->reject(function ($video) use ($uploadedVideoIds) {
