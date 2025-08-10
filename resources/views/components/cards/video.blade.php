@@ -1,11 +1,15 @@
 @props(['video'])
 
 @php
-    $thubmnailUrl = 'https://i.ytimg.com/vi/' . $video['id'] . '/hqdefault.jpg'
+    $thubmnailUrl = 'https://i.ytimg.com/vi/' . $video['id'] . '/hqdefault.jpg';
+    $cardClasses = "flex flex-col shrink-0 gap-2 bg-white/20 p-3 sm:w-96 w-60 h-75 rounded-md";
+//    if ($video['is_featured']) {
+//        $cardClasses .= " border-1 border-green-300"; // highlight
+//    }
 @endphp
 
 
-<div class=" flex flex-col shrink-0 gap-2 bg-white/20 p-3 sm:w-96 w-60 h-75 rounded-md">
+<div class="{{$cardClasses}}">
     <a href="{{"/videos/" . $video->id}}" class="group">
         <h4 class="text-xl group-hover:text-blue-300 transition-colors duration-500">{{$video->title}}</h4>
         <img class="w-full h-47 object-cover mt-2 rounded-xl" src="{{$thubmnailUrl}}" alt="video thumnail">
