@@ -1,7 +1,7 @@
 <x-layout>
     <section>
         <x-section-heading>Picked Videos</x-section-heading>
-        <article class="scrollbar-hide mt-5 flex gap-4 overflow-x-auto whitespace-nowrap ">
+        <article class="mt-5 flex flex-col items-center sm:flex-row gap-4 sm:overflow-x-auto scrollbar-hide">
             @foreach($featuredVideos as $video)
             <x-cards.video :video="$video"/>
             @endforeach
@@ -14,7 +14,6 @@
             @foreach($categories as $category)
                 <x-tag href="{{'/categories/' . $category->id}}">{{$category['name']}} {{$category['videos_count']}}</x-tag>
             @endforeach
-
         </div>
     </section>
 
