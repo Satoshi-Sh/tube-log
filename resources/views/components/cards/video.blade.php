@@ -12,7 +12,7 @@
     </a>
     <div class="flex gap-2 grow flex-start items-center">
         @foreach($video->categories as $category)
-        <x-tag size="small">{{$category->name}}</x-tag>
+        <x-tag href="{{'/categories/' . $category->id}}" size="small">{{$category->name}}</x-tag>
         @endforeach
     </div>
 </div>

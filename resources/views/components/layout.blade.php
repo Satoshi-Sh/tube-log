@@ -10,7 +10,7 @@
 </head>
 <body class="bg-black text-white mb-40">
 <div>
-    <nav class=" sticky bg-gray-950 top-0  flex justify-between items-center px-4 py-6 border-b border-white/10">
+    <nav class=" sticky relative z-10 bg-gray-950 top-0  flex justify-between items-center px-4 py-6 border-b border-white/10">
         <div class="sm:block hidden">
             <a href="/" class=" italic font-extrabold text-2xl">
 {{--                <img src="{{ Vite::asset('resources/images/logo.svg') }}" alt="">--}}

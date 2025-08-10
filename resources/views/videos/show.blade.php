@@ -1,5 +1,5 @@
 <x-layout>
-    <div class="relative mt-20" style="padding-top: 56.25%">
+    <div class="relative z-1 mt-20" style="padding-top: 56.25%">
         <iframe src="https://www.youtube.com/embed/{{ $video->id }}" class="absolute inset-0 w-full h-full" allowfullscreen></iframe>
     </div>
     <div class="p-5">
@@ -10,7 +10,7 @@
         </p>
         <div class="mt-3 flex gap-2 grow flex-start items-center">
             @foreach($video->categories as $category)
-                <x-tag size="small">{{$category->name}}</x-tag>
+                <x-tag size="small" href="{{'/categories/' . $category->id}}">{{$category->name}}</x-tag>
             @endforeach
         </div>
     </div>

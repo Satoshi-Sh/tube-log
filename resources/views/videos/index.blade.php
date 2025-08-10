@@ -12,7 +12,7 @@
         <x-section-heading>Categories</x-section-heading>
         <div class="mt-10 flex flex-row flex-wrap justify-center sm:justify-start gap-5">
             @foreach($categories as $category)
-                <x-tag>{{$category['name']}} {{$category['videos_count']}}</x-tag>
+                <x-tag href="{{'/categories/' . $category->id}}">{{$category['name']}} {{$category['videos_count']}}</x-tag>
             @endforeach
 
         </div>
