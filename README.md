@@ -1,3 +1,5 @@
+![Main pagee screenshot](https://raw.githubusercontent.com/Satoshi-Sh/git_resource/main/tube-log.png)
+
 # About
 
 TubeLog helps you showcase your YouTube videos, including unlisted ones, and organize them into custom categories.
