@@ -48,7 +48,10 @@ class YoutubeAPIHandler
         ]);
 
         if ($response->successful()) {
-            return $response->json()['items'] ?? [];
+            $items = $response->json()['items'] ?? [];
+            return array_filter($items, function ($item) {
+                return isset($item['snippet']['resourceId']['videoId']);
+          });
         }
 
         Log::error('YouTube API failed', [

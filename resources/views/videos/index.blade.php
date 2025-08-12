@@ -1,7 +1,7 @@
 <x-layout>
     <section>
         <x-section-heading>Picked Videos</x-section-heading>
-        <article class="mt-5 flex flex-col items-center sm:flex-row gap-4 sm:overflow-x-auto scrollbar-hide">
+        <article class="mt-5 flex flex-col items-centerphp sm:flex-row gap-4 sm:overflow-x-auto scrollbar-hide">
             @foreach($featuredVideos as $video)
             <x-cards.video :video="$video"/>
             @endforeach
