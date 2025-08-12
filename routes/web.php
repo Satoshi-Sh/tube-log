@@ -14,6 +14,10 @@ Route::get('/videos/{video}', [VideoController::class, 'show']);
 
 Route::get('/categories/{category}',[CategoryController::class, 'show']);
 
+Route::get('/dashboard/categories/edit/{category}', [CategoryController::class, 'edit'])->middleware('auth');
+Route::put('/dashboard/categories/edit/{category}', [CategoryController::class, 'update'])->middleware('auth');
+Route::delete('/dashboard/categories/{category}', [CategoryController::class, 'destroy'])->middleware('auth');
+
 Route::get('/about', function () {
     return view('about');
 });

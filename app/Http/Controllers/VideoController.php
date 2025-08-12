@@ -48,7 +48,9 @@ class VideoController extends Controller
 
         $video->categories()->sync($attributes['categories'] ?? []);
 
-        return redirect("/dashboard");
+        $message = $video->title . ' has been created';
+
+        return redirect("/dashboard")->with('success',$message);
     }
     public function edit(Request $request, Video $video){
         $video->load('categories');
@@ -69,11 +71,14 @@ class VideoController extends Controller
 
         $video->categories()->sync($attributes['categories'] ?? []);
 
-        return redirect("/dashboard");
+        $message = $video->title . ' has been updated';
+
+        return redirect("/dashboard")->with('success',$message);
 
     }
     public function destroy(Video $video){
         $video-> delete();
-        return redirect("/dashboard");
+        $message = $video->title . ' has been deleted';
+        return redirect("/dashboard")->with('success',$message);
     }
 }
