@@ -12,13 +12,15 @@ class AdminController extends Controller
         $uploadedVideos = Video::with('categories')
             ->orderBy('published_at', 'desc')
             ->get();
+        $uploadedVideosGrouped = $uploadedVideos->groupBy('is_featured');
         $uploadedVideoIds = $uploadedVideos->pluck('id')->toArray();
         $newVideos = (new YoutubeAPIHandler())->getPlaylist();
         $filteredNewVideos = collect($newVideos)->reject(function ($video) use ($uploadedVideoIds) {
             return in_array($video['snippet']['resourceId']['videoId'], $uploadedVideoIds);
         })->values();
         return view('admin.index',[
-            'uploadedVideos' => $uploadedVideos,
+            'featuredVideos' =>$uploadedVideosGrouped[1] ?? [],
+            'uploadedVideos' => $uploadedVideosGrouped[0] ?? [],
             'newVideos' => $filteredNewVideos,
             'categories' => Category::withCount('videos')->get(),
         ]);

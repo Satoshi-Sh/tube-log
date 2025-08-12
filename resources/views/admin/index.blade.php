@@ -18,6 +18,15 @@
     </section>
 
     <section>
+        <x-section-heading>Featured Videos</x-section-heading>
+        <div class=" mt-10 flex flex-wrap gap-4 justify-center">
+            @foreach($featuredVideos as $video)
+                <x-cards.video-edit :video="$video"/>
+            @endforeach
+        </div>
+    </section>
+
+    <section>
         <x-section-heading>Uploaded Videos</x-section-heading>
         <div class=" mt-10 flex flex-wrap gap-4 justify-center">
             @foreach($uploadedVideos as $video)
