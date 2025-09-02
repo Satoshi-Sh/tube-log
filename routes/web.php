@@ -8,9 +8,9 @@ use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\CategoryController;
 use function Pest\Laravel\get;
 
-Route::get('/', [VideoController::class, 'index']);
+Route::get('/', [VideoController::class, 'index'])->name('home');
 
-Route::get('/videos/{video}', [VideoController::class, 'show']);
+Route::get('/videos/{video}', [VideoController::class, 'show'])->name('video');
 
 Route::get('/categories/{category}',[CategoryController::class, 'show']);
 
