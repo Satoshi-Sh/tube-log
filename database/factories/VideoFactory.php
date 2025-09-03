@@ -19,11 +19,11 @@ class VideoFactory extends Factory
     public function definition(): array
     {
         return [
-            'id' => (string) Str::uuid(),
+            'id' => Str::random(11),
             'user_id' => User::factory(),
             'title'=>$this->faker->sentence(),
             'description'=>$this->faker->paragraph(),
-            'published_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
+            'published_at' => now()->subDays(rand(1, 365)),
             'is_featured'=>$this->faker->boolean(),
         ];
     }
